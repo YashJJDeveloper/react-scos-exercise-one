@@ -1,0 +1,126 @@
+/*  LIGHT (DEFAULT)  */
+
+.login-page {
+  height: 100vh;
+  background: #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-card {
+  width: 420px;
+  padding: 40px 35px;
+  border-radius: 20px;
+
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 25px;
+}
+
+.input {
+  width: 93%;
+  padding: 14px;
+  margin-bottom: 15px;
+
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+
+  background: #ffffff;
+  color: #1e293b;
+}
+
+.input::placeholder {
+  color: #94a3b8;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  background: #14532d;
+  color: #ffffff;
+  border-radius: 10px;
+  border: none;
+}
+
+.footer-text {
+  color: #64748b;
+}
+
+/*  DARK MODE  */
+
+.app.dark .login-page {
+  background: #121212;
+}
+
+.app.dark .login-card {
+  background: #121212;
+  border: 1px solid #1e293b;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.app.dark .title {
+  color: #e2e8f0;
+}
+
+.app.dark .input {
+  background: #12121286;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+}
+
+.app.dark .input::placeholder {
+  color: #64748b;
+}
+
+.app.dark .btn {
+  background: #14532d;
+  color: #ecfdf5;
+}
+
+.app.dark .btn:hover {
+  background: #166534;
+}
+
+.app.dark .footer-text {
+  color: #64748b;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: 12px;
+
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  transition: all 0.3s ease;
+}
+/* Show only light logo by default */
+.logo-dark {
+  display: none;
+}
+
+/* In dark mode → switch logos */
+.app.dark .logo-light {
+  display: none;
+}
+
+.app.dark .logo-dark {
+  display: block;
+}

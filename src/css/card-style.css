@@ -1,0 +1,332 @@
+/*  PAGE LAYOUT  */
+
+.main-body {
+  min-height: 100vh;
+  padding: 40px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: #f5f7fb;
+}
+
+/* DARK MODE */
+.app.dark .main-body {
+  background: #121212;
+}
+
+/*  HEADER  */
+
+.main-body h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.app.dark .subtitle {
+  color: #aaa;
+}
+
+/*  SEARCH BAR  */
+
+.search-box {
+  width: 100%;
+  max-width: 500px;
+
+  display: flex;
+  align-items: center;
+
+  background: white;
+  border-radius: 12px;
+  padding: 12px 15px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+}
+
+.search-box  {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  background: transparent;
+}
+.search-input{
+  border: none;
+  background: none;
+  width: 100%;
+  outline: none;
+  font-size: 15px;
+  color: black;
+}
+/* DARK */
+.app.dark .search-box {
+  background: #1e1e1e;
+}
+
+/*  CARD LIST  */
+
+.card-row {
+  width: 100%;
+  max-width: 600px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+}
+
+/*  CARD  */
+
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 15px 18px;
+
+  background: white;
+  border-radius: 14px;
+
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.card-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* DARK */
+.app.dark .card-container {
+  background: #1e1e1e;
+  border: solid #dddddd28 0.5px;
+}
+
+/*  LEFT SIDE  */
+
+.card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* LOGO */
+.card-left img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* TEXT */
+.card-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.card-info p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #777;
+}
+
+.app.dark .card-info p {
+  color: #aaa;
+}
+
+/*  RIGHT SIDE  */
+
+.card-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* TYPE BADGE */
+.badge {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ARROW BUTTON */
+.arrow-btn {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+  background: #f0f0f0;
+
+  font-size: 18px;
+}
+
+.app.dark .arrow-btn {
+  background: #333;
+}
+
+/*  RESPONSIVE  */
+
+@media (max-width: 768px) {
+  .main-body h2 {
+    font-size: 26px;
+  }
+
+  .card-row {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-body {
+    padding: 20px 10px;
+  }
+
+  .search-box {
+    padding: 10px;
+  }
+
+  .card-container {
+    padding: 12px;
+  }
+}
+
+
+
+/*  BACK BUTTON  */
+
+.back-btn {
+  margin-bottom: 20px;
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: #eef2f7;
+  color: #333;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #e2e8f0;
+}
+
+/* DARK */
+.app.dark .back-btn {
+  background: #2a2a2a;
+  color: #ddd;
+}
+
+/*  SELECTED INSTITUTE CARD  */
+
+.selected-inst {
+  width: 100%;
+  max-width: 600px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+  padding: 16px 18px;
+
+  background: white;
+  border-radius: 16px;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
+  margin-bottom: 30px;
+}
+
+/* DARK */
+.app.dark .selected-inst {
+  background: #1e1e1e;
+}
+
+/*  LEFT SIDE  */
+
+.selected-inst img {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* TEXT BLOCK */
+
+.inst-info {
+  flex: 1;
+}
+
+.inst-info h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.inst-info p {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: #777;
+}
+
+.app.dark .inst-info p {
+  color: #aaa;
+}
+
+/*  RIGHT ICON  */
+
+.inst-action {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #f1f5f9;
+  font-size: 16px;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.inst-action:hover {
+  background: #e2e8f0;
+}
+
+/* DARK */
+.app.dark .inst-action {
+  background: #333;
+}
+
+/*  RESPONSIVE  */
+
+@media (max-width: 480px) {
+  .selected-inst {
+    padding: 12px;
+  }
+
+  .inst-info h4 {
+    font-size: 14px;
+  }
+}

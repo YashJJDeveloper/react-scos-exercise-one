@@ -1,0 +1,84 @@
+/* Landing Page*/
+
+.home-page {
+    min-height: calc(100vh - 80px); /* adjust for navbar */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* HEADING */
+  .home-page h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  /* BUTTON */
+  .home-page button {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 500;
+  
+    border: none;
+    border-radius: 10px;
+  
+    background: linear-gradient(135deg, #3b836f, #07551c);
+    color: white;
+  
+    cursor: pointer;
+    transition: all 0.3s ease;
+  
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* HOVER EFFECT */
+  .home-page button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* ACTIVE CLICK */
+  .home-page button:active {
+    transform: scale(0.97);
+  }
+  
+  /* DARK MODE SUPPORT */
+  .app.dark .home-page h2 {
+    color: #ffffff;
+  }
+  
+  .app.dark .home-page button {
+    background: linear-gradient(135deg, #232526, #414345);
+  }
+  
+  /* media query */
+  
+  /* TABLET */
+  @media (max-width: 768px) {
+    .home-page h2 {
+      font-size: 28px;
+    }
+  
+    .home-page button {
+      padding: 10px 22px;
+      font-size: 14px;
+    }
+  }
+  
+  /* MOBILE */
+  @media (max-width: 480px) {
+    .home-page h2 {
+      font-size: 24px;
+    }
+  
+    .home-page button {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
