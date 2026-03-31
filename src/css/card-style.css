@@ -32,7 +32,16 @@
 .app.dark .subtitle {
   color: #aaa;
 }
-
+.navbar{
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: absolute;   
+  top: 20px;
+  left: 20px;
+}
 /*  SEARCH BAR  */
 
 .search-box {
@@ -221,6 +230,18 @@
 
   cursor: pointer;
   transition: all 0.2s ease;
+}
+.logout-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+
+  background: white;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+
+  transition: 0.3s;
 }
 
 .back-btn:hover {

@@ -3,14 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "../css/login.css";
 import usersData from "../data/userdata";
 import schoolCoreLogo from "../assets/schoolCoreLogo.png";
-import schoolCoreLogoWhite from "../assets/schoolCoreLogoWhite.png"
-function Login() {
+import schoolCoreLogoWhite from "../assets/schoolCoreLogoWhite.png";
+
+import ThemeSwitcher from "../common-components/ThemeSwitcher";
+function Login({darkMode, setDarkMode}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-// user validation 
+
+  // user validation
   const validateLogin = () => {
     if (!email || !password) {
       setError("Email and password cannot be empty");
@@ -31,11 +34,16 @@ function Login() {
   };
 
   return (
-    <div className="login-page">
+    <div className={darkMode ? "app dark" : "app"}>
+      <div className="login-page">
+      <div className="navbar-theme-switcher">
+      
+      <ThemeSwitcher darkMode={darkMode} setDarkMode={setDarkMode} />
+      </div>
       <div className="login-card">
         {/* Logo */}
-        <img src={schoolCoreLogo} className="logo logo-light" alt="logo"/>
-<img src={schoolCoreLogoWhite} className="logo logo-dark" alt="logo"/>
+        <img src={schoolCoreLogo} className="logo logo-light" alt="logo" />
+        <img src={schoolCoreLogoWhite} className="logo logo-dark" alt="logo" />
 
         {/* Title */}
         <h1 className="title">SchoolCoreOS</h1>
@@ -71,6 +79,7 @@ function Login() {
           <span>Privacy Policy</span>
         </p>
       </div>
+    </div>
     </div>
   );
 }

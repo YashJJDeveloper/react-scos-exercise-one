@@ -1,138 +1,165 @@
 /*  MAIN  */
 
 .main-container {
-    width: 100%;
-    padding: 16px;
-    box-sizing: border-box;
-  }
-  
-  /*  GRID  */
-  
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logout-btn {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.headings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*  GRID  */
+
+.card-grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 50vh;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+/*  CARD  */
+
+.card {
+  width: 100%;
+  min-height: 160px;
+
+  padding: 18px;
+  border-radius: 16px;
+
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  overflow: hidden;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+/* HOVER */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+/*  CONTENT  */
+
+/* NUMBER */
+.card-number {
+  font-size: 26px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+/* TITLE */
+.card h1 {
+  font-size: 15px;
+  margin: 8px 0 4px;
+  font-weight: 600;
+}
+
+/* DESCRIPTION */
+.card p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+
+  word-wrap: break-word; /* ✅ prevents text overflow */
+}
+
+/*  COLOR VARIANTS  */
+
+.card1 {
+  background: rgb(240, 245, 255);
+}
+.card2 {
+  background: rgb(238, 253, 242);
+}
+.card3 {
+  background: rgb(255, 246, 234);
+}
+.card4 {
+  background: rgb(243, 241, 255);
+}
+
+/*  DARK MODE  */
+
+.app.dark .card {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.app.dark .card p {
+  color: #aaa;
+}
+
+/*  RESPONSIVE  */
+
+/* 📱 Tablets */
+@media (max-width: 768px) {
   .card-grid {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-  
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr)); /* ✅ strict 2 col */
-  
-    gap: 20px;
+    gap: 16px;
   }
-  
-  /*  CARD  */
-  
+
+  .card {
+    min-height: 150px;
+  }
+}
+
+/* 📱 Small screens (1 column) */
+@media (max-width: 600px) {
+  .card-grid {
+    grid-template-columns: 1fr; /* ✅ switch to 1 column */
+  }
+
   .card {
     width: 100%;
-    min-height: 160px;
-  
-    padding: 18px;
-    border-radius: 16px;
-  
-    background: white;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  
-    box-sizing: border-box; /* ✅ prevents overflow */
-    overflow: hidden;       /* ✅ prevents content spill */
-  
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transition: all 0.25s ease;
   }
-  
-  /* HOVER */
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* 📱 Extra small screens */
+@media (max-width: 400px) {
+  .main-container {
+    padding: 10px;
   }
-  
-  /*  CONTENT  */
-  
-  /* NUMBER */
-  .card-number {
-    font-size: 26px;
-    font-weight: 700;
-    color: #2563eb;
+
+  .card {
+    padding: 14px;
   }
-  
-  /* TITLE */
+
   .card h1 {
-    font-size: 15px;
-    margin: 8px 0 4px;
-    font-weight: 600;
+    font-size: 14px;
   }
-  
-  /* DESCRIPTION */
+
   .card p {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.4;
-  
-    word-wrap: break-word;   /* ✅ prevents text overflow */
+    font-size: 12px;
   }
-  
-  /*  COLOR VARIANTS  */
-  
-  .card1 { background: rgb(240, 245, 255); }
-  .card2 { background: rgb(238, 253, 242); }
-  .card3 { background: rgb(255, 246, 234); }
-  .card4 { background: rgb(243, 241, 255); }
-  
-  /*  DARK MODE  */
-  
-  .app.dark .card {
-    background: #1e1e1e;
-    color: #fff;
+
+  .card-number {
+    font-size: 22px;
   }
-  
-  .app.dark .card p {
-    color: #aaa;
-  }
-  
-  /*  RESPONSIVE  */
-  
-  /* 📱 Tablets */
-  @media (max-width: 768px) {
-    .card-grid {
-      gap: 16px;
-    }
-  
-    .card {
-      min-height: 150px;
-    }
-  }
-  
-  /* 📱 Small screens (1 column) */
-  @media (max-width: 600px) {
-    .card-grid {
-      grid-template-columns: 1fr; /* ✅ switch to 1 column */
-    }
-  
-    .card {
-      width: 100%;
-    }
-  }
-  
-  /* 📱 Extra small screens */
-  @media (max-width: 400px) {
-    .main-container {
-      padding: 10px;
-    }
-  
-    .card {
-      padding: 14px;
-    }
-  
-    .card h1 {
-      font-size: 14px;
-    }
-  
-    .card p {
-      font-size: 12px;
-    }
-  
-    .card-number {
-      font-size: 22px;
-    }
-  }
+}

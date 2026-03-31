@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import "../css/dashboard.css";
+import LogoutBtn from "../common-components/LogoutBtn";
 function Dashboard() {
   const location = useLocation();
 
@@ -9,6 +10,9 @@ function Dashboard() {
   return (
     <>
       <div className="main-container">
+        <div className="logout"> 
+          <LogoutBtn/>
+        </div>
         <div className="headings">
           <h1>Welcome to SchoolCoreOS</h1>
           

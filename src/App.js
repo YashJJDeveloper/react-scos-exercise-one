@@ -1,101 +1,63 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
 
-import LandingPage from "./components/LandingPage";
+
 import Login from "./components/LoginPage";
 import InstituteList from "./components/InstituteList";
 import RolesList from "./components/RolesList";
-import Dashboard from "./components/Dashboard";
-import schoolCoreLogo from "./assets/schoolCoreLogo.png";
-import schoolCoreLogoWhite from "./assets/schoolCoreLogoWhite.png";
+
 import PrivateRoute from "./private-routes/PrivateRoute";
+
+import Dashboard from "./components/Dashboard";
+
+
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    return savedTheme === "dark";
+    return localStorage.getItem("theme") === "dark";
   });
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    navigate("/login");
-  };
 
   return (
-    <div className={darkMode ? "app dark" : "app"}>
-      <div className="main-container">
-        {/* NAVBAR */}
-        <div className="navbar">
-          <div className="logo-container">
-            {darkMode ? (
-              <img
-                src={schoolCoreLogoWhite}
-                alt="SchoolCore Logo"
-                className="logo-img"
-              />
-            ) : (
-              <img
-                src={schoolCoreLogo}
-                alt="SchoolCore Logo"
-                className="logo-img"
-              />
-            )}
-            <span className="logo-text">SchoolCoreOS</span>
-          </div>
-          <div className="nav-btns">
-            <button onClick={handleLogout} className="logout-btn">
-              Logout
-            </button>
-            {/* DARK MODE BUTTON */}
-            <button
-              className="toggle-mode"
-              onClick={() => setDarkMode(!darkMode)}
-            >
-              {darkMode ? "☀️ Light" : "🌙 Dark"}
-            </button>
-          </div>
+    
+      <div className={darkMode ? "app dark" : "app"}>
+        <div className="main-container">
+          
+          
+
+          <Routes>
+            
+            <Route path="/login" element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />} />
+
+            <Route
+              path="/InstituteList"
+              element={
+                <PrivateRoute>
+                  <InstituteList  darkMode={darkMode} setDarkMode={setDarkMode}/>
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/roles"
+              element={
+                <PrivateRoute>
+                  <RolesList />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
         </div>
-
-        {/* ROUTES */}
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/InstituteList"
-            element={
-              <PrivateRoute>
-                <InstituteList />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/roles"
-            element={
-              <PrivateRoute>
-                <RolesList />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
       </div>
-    </div>
+    
   );
 }
 
