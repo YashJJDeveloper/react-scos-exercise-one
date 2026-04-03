@@ -17,7 +17,7 @@ function RolesList() {
       return;
     }
 
-    if (institute.roles.length === 1) {
+    if (institute?.roles.length === 1) {
       navigate("/dashboard", { state: institute.roles[0] });
     }
   }, [institute, navigate]);
@@ -33,11 +33,11 @@ function RolesList() {
       <button className="back-btn" onClick={() => navigate("/InstituteList")}>
         ← Change Institute
       </button>
-{/* Selected Institute Card */}
+      {/* Selected Institute Card */}
       <div className="selected-inst">
-        <img src={institute.instLogo} alt="institute-logo" />
+        <img src={institute.inst_logo} alt="institute-logo" />
         <div className="inst-info">
-          <h4>{institute.name}</h4>
+          <h4>{institute.institute_name}</h4>
           <p>Mumbai, Maharashtra</p>
         </div>
         <div className="inst-action">⚙</div>
@@ -49,8 +49,8 @@ function RolesList() {
         {institute.roles.map((role, index) => (
           <RoleCard
             key={index}
-            name={role.name}
-            img={role.img}
+            name={role.role_name}
+            role_logo={role.role_logo}
             onClick={() => handleSelect(role)}
           />
         ))}

@@ -1,52 +1,66 @@
 import { useNavigate } from "react-router-dom";
 import InstituteCard from "./InstituteCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../css/card-style.css";
 
 import SearchBar from "../common-components/SearchBar";
 import Navbar from "../common-components/NavBar";
 
-function InstituteList({darkMode, setDarkMode}) {
+function InstituteList({ darkMode, setDarkMode }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const [isReady, setIsReady] = useState(false); 
+
   const user = JSON.parse(localStorage.getItem("user"));
-  
+  const institutes = user?.institutes || [];
 
-  if (!user) {
-    navigate("/login");
-    return null;
-  }
+  // 🔒 Redirect if not logged in
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      setIsReady(true); //  mark data ready
+    }
+  }, [user, navigate]);
 
-  const username = user.email.split("@")[0];
-  
+  //  Auto redirect ONLY after data is ready
+  useEffect(() => {
+    if (!isReady) return; // make sure data is ready 
 
-  const institutes = user.institutes || [];
+    console.log("FINAL institutes:", institutes);
+
+    if (institutes.length === 1) {
+      navigate("/roles", { state: institutes[0] });
+    }
+  }, [isReady, institutes, navigate]);
+
+  if (!user) return null;
+
+  const username = user?.userEmail ? user.userEmail.split("@")[0] : "";
 
   const filteredInstitutes = institutes.filter((inst) =>
-    inst.name.toLowerCase().includes(search.toLowerCase())
+    inst?.institute_name?.toLowerCase().includes(search.toLowerCase())
   );
-
-  if (institutes.length === 0) {
-    return <h1>You are not assigned to any institute yet!</h1>;
-  }
-
-  if (institutes.length === 1) {
-    navigate("/roles", { state: institutes[0] });
-  }
 
   const handleSelect = (institute) => {
     navigate("/roles", { state: institute });
   };
 
+  if (institutes.length === 0) {
+    return <h1>You are not assigned to any institute yet!</h1>;
+  }
+
   return (
     <div className="main-body">
-      <div className="navbar"><Navbar darkMode={darkMode} setDarkMode={setDarkMode}  /></div>
+      <div className="navbar">
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      </div>
+
       <h2>Hi, {username}!</h2>
       <p className="subtitle">
         Select your institute to access your dashboard
       </p>
 
-      {/*   SearchBar */}
       {institutes.length > 5 && (
         <SearchBar
           value={search}
@@ -56,13 +70,16 @@ function InstituteList({darkMode, setDarkMode}) {
       )}
 
       <div className="card-row">
-        {filteredInstitutes.map((inst, index) => (
+        {filteredInstitutes.map((inst) => (
           <div
-            key={index}
+            key={inst.inst_id}
             onClick={() => handleSelect(inst)}
             style={{ cursor: "pointer" }}
           >
-            <InstituteCard instLogo={inst.instLogo} name={inst.name} />
+            <InstituteCard
+              instLogo={inst.inst_logo}
+              name={inst.institute_name}
+            />
           </div>
         ))}
       </div>

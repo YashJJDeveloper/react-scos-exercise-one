@@ -1,20 +1,43 @@
-function RoleCard(props) {
-  // UI for Role Cards
+function RoleCard({ name, role_logo, onClick }) {
+  const getDescription = () => {
+    switch (name) {
+      case "Admin":
+        return "Full system access";
+      case "Teacher":
+        return "Class & grading";
+      case "Parent":
+        return "Child's progress";
+      case "Student":
+        return "Your progress";
+      case "Institute Admin":
+        return "Manage institute";
+      case "Super Admin":
+        return "Manage all institutes";
+      default:
+        return "Child progress";
+    }
+  };
+  const roleIconMap = {
+    Admin: "shield_person",
+    Teacher: "menu_book",
+    Parent: "group",
+    Student: "Groups",
+    "Institute Admin": "shield_person",
+    "Super Admin": "shield_person"
+  };
+ 
   return (
-    <div className="card-container" onClick={props.onClick}>
+    <div className="card-container" onClick={onClick}>
       
       <div className="card-left">
-        <img src={props.img} alt="role" />
+        
+        <span className="material-symbols-outlined">
+        {roleIconMap[name] || role_logo || "help"}
+        </span>
 
         <div className="card-info">
-          <h3>{props.name}</h3>
-          <p>
-            {props.name === "Admin"
-              ? "Full system access"
-              : props.name === "Teacher"
-              ? "Class & grading"
-              : "Child progress"}
-          </p>
+          <h3>{name}</h3>
+          <p>{getDescription()}</p>
         </div>
       </div>
 

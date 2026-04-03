@@ -16,7 +16,7 @@ function Dashboard() {
         <div className="headings">
           <h1>Welcome to SchoolCoreOS</h1>
           
-          <h2> {role.name} Panel</h2>
+          <h2> {role.role_name} Panel</h2>
         </div>
         {/* Dashboard Cards */}
         <div className="card-grid">

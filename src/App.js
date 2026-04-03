@@ -26,7 +26,7 @@ function App() {
 
           <Routes>
             
-            <Route path="/login" element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />} />
+            <Route path="/" element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />} />
 
             <Route
               path="/InstituteList"
