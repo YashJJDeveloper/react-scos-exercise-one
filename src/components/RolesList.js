@@ -1,6 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import RoleCard from "./RoleCard";
+import Card from "../common-components/Card";
+import Button from "../common-components/Button";
+import Header from "../common-components/Header";
 import "../css/card-style.css";
 
 function RolesList() {
@@ -30,20 +33,31 @@ function RolesList() {
 
   return (
     <div className="main-body">
-      <button className="back-btn" onClick={() => navigate("/InstituteList")}>
+      <div className="settings-icon" >
+        <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => navigate("/InstituteList")}
+        className="back-btn"
+      >
         ← Change Institute
-      </button>
-      {/* Selected Institute Card */}
-      <div className="selected-inst">
-        <img src={institute.inst_logo} alt="institute-logo" />
-        <div className="inst-info">
-          <h4>{institute.institute_name}</h4>
-          <p>Mumbai, Maharashtra</p>
-        </div>
-        <div className="inst-action">⚙</div>
+      </Button>
       </div>
-      <h2 style={{ marginBottom: "20px" }}>Select Your Role</h2>
-      <p>Select your role for institute to continue</p>
+
+      {/* Selected Institute Card */}
+      <Card
+        image={institute.inst_logo}
+        title={institute.institute_name}
+        subtitle="Mumbai, Maharashtra"
+        rightContent={<div className="settings-icon">⚙</div>}
+        className="selected-inst"
+      />
+
+      <Header
+        title="Select Your Role"
+        subtitle="Select your role for institute to continue"
+      />
+
       {/* Role Mapping */}
       <div className="card-row">
         {institute.roles.map((role, index) => (

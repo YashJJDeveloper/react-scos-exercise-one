@@ -5,11 +5,12 @@ import "../css/card-style.css";
 
 import SearchBar from "../common-components/SearchBar";
 import Navbar from "../common-components/NavBar";
+import Header from "../common-components/Header";
 
 function InstituteList({ darkMode, setDarkMode }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const [isReady, setIsReady] = useState(false); 
+  const [isReady, setIsReady] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user"));
   const institutes = user?.institutes || [];
@@ -17,7 +18,7 @@ function InstituteList({ darkMode, setDarkMode }) {
   // 🔒 Redirect if not logged in
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate("/");
     } else {
       setIsReady(true); //  mark data ready
     }
@@ -25,7 +26,7 @@ function InstituteList({ darkMode, setDarkMode }) {
 
   //  Auto redirect ONLY after data is ready
   useEffect(() => {
-    if (!isReady) return; // make sure data is ready 
+    if (!isReady) return; // make sure data is ready
 
     console.log("FINAL institutes:", institutes);
 
@@ -47,7 +48,11 @@ function InstituteList({ darkMode, setDarkMode }) {
   };
 
   if (institutes.length === 0) {
-    return <h1>You are not assigned to any institute yet!</h1>;
+    return (
+      <div className="main-body">
+        <h1>You are not assigned to any institute yet!</h1>
+      </div>
+    );
   }
 
   return (
@@ -56,13 +61,14 @@ function InstituteList({ darkMode, setDarkMode }) {
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       </div>
 
-      <h2>Hi, {username}!</h2>
-      <p className="subtitle">
-        Select your institute to access your dashboard
-      </p>
+      <Header
+        title={`Hi, ${username}!`}
+        subtitle="Select your institute to access your dashboard"
+      />
 
       {institutes.length > 5 && (
         <SearchBar
+          data-testid="search-bar"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search your institute..."
@@ -74,7 +80,7 @@ function InstituteList({ darkMode, setDarkMode }) {
           <div
             key={inst.inst_id}
             onClick={() => handleSelect(inst)}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", width: "100%" }}
           >
             <InstituteCard
               instLogo={inst.inst_logo}

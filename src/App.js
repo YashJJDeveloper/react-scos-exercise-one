@@ -1,7 +1,8 @@
 import {  Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import "./css/responsive.css";
+import "./css/components.css";
 import "./App.css";
-
 
 import Login from "./components/LoginPage";
 import InstituteList from "./components/InstituteList";

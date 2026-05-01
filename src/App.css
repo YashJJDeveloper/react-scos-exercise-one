@@ -1,55 +1,157 @@
-.App {
-  text-align: center;
-}
+/* ========== ROOT APP STYLES ========== */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-/* ROOT */
 .app {
   min-height: 100vh;
   background: #f5f7fa;
   color: #222;
-  transition: all 0.3s ease;
-  font-family: sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* DARK MODE */
+/* ========== DARK MODE ========== */
 .app.dark {
   background: #121212;
-  color: #f1f1f1;
+  color: #e2e8f0;
 }
+
+/* ========== MAIN CONTAINER ========== */
+.main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ========== GLOBAL RESPONSIVE TEXT ========== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ========== UTILITY FIXES ========== */
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+/* ========== SCROLLBAR STYLING ========== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.app.dark ::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+.app.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.app.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ========== FOCUS STYLES ========== */
+
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.app.dark :focus-visible {
+  outline-color: #4dd0e1;
+}
+
+/* ========== RESPONSIVE BREAKPOINTS ========== */
+
+/* Mobile First - Extra Small (max 480px) */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    padding: 0;
+  }
+}
+
+/* Small to Medium (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Large (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Extra Large (1025px+) */
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+  .navbar,
+  .logout-btn,
+  .back-btn {
+    display: none !important;
+  }
+
+  .app {
+    background: white;
+    color: black;
+  }
+}
+ 
 
 /* MAIN CONTAINER */
 .main-container {
@@ -59,9 +161,6 @@
 
 
 
-/* media query */
-
-/* TABLET */
 
 
 

@@ -1,3 +1,5 @@
+import Card from "../common-components/Card";
+
 function RoleCard({ name, role_logo, onClick }) {
   const getDescription = () => {
     switch (name) {
@@ -17,35 +19,29 @@ function RoleCard({ name, role_logo, onClick }) {
         return "Child progress";
     }
   };
+
   const roleIconMap = {
     Admin: "shield_person",
     Teacher: "menu_book",
     Parent: "group",
     Student: "Groups",
     "Institute Admin": "shield_person",
-    "Super Admin": "shield_person"
+    "Super Admin": "shield_person",
   };
- 
+
   return (
-    <div className="card-container" onClick={onClick}>
-      
-      <div className="card-left">
-        
+    <Card
+      leftContent={
         <span className="material-symbols-outlined">
-        {roleIconMap[name] || role_logo || "help"}
+          {roleIconMap[name] || role_logo || "help"}
         </span>
-
-        <div className="card-info">
-          <h3>{name}</h3>
-          <p>{getDescription()}</p>
-        </div>
-      </div>
-
-      <div className="card-right">
-        <div className="arrow-btn">›</div>
-      </div>
-
-    </div>
+      }
+      title={name}
+      subtitle={getDescription()}
+      rightContent={<div className="arrow-btn">›</div>}
+      onClick={onClick}
+    />
   );
 }
-export default RoleCard
+
+export default RoleCard;

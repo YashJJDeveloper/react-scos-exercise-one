@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css";
 import schoolCoreLogo from "../assets/schoolCoreLogo.png";
@@ -6,27 +6,31 @@ import schoolCoreLogoWhite from "../assets/schoolCoreLogoWhite.png";
 import API from "../api";
 import transformUserData from "../utils/transformUserData";
 import ThemeSwitcher from "../common-components/ThemeSwitcher";
+import Button from "../common-components/Button";
+import Input from "../common-components/Input";
 
 function Login({ darkMode, setDarkMode }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log("Error state changed:", error);
+  }, [error]);
   const validateLogin = async () => {
-    console.log("LOGIN CLICKED");
     if (!email || !password) {
       setError("Email and password required");
       return;
     }
 
-    setError(""); // reset previous error
-    setLoading(true); // start loader
+    setError("");
+    setLoading(true);
 
     try {
       const loginRes = await API.post("/auth/login", { email, password });
+
       localStorage.setItem("token", loginRes.data.token);
 
       const { userId, email: userEmail } = loginRes.data;
@@ -41,14 +45,14 @@ function Login({ darkMode, setDarkMode }) {
       localStorage.setItem("user", JSON.stringify(userData));
 
       navigate("/InstituteList");
+
     } catch (err) {
-      console.error("LOGIN ERROR:", err);
       if (err.response?.status === 401) setError(err.response.data.message);
       else if (err.response?.status === 500)
         setError("Server error, try again");
       else setError("Login failed");
     } finally {
-      setLoading(false); // stop loader
+      setLoading(false);
     }
   };
 
@@ -78,52 +82,50 @@ function Login({ darkMode, setDarkMode }) {
           </p>
           <p className="tagline">
             combined into one{" "}
-            <strong style={{ color: "black" }}>Operating System</strong> for
+            <strong className="taglin-strong">Operating System</strong> for
             your institute
           </p>
+
           {/* Inputs */}
-          <input
-            type="text"
+          <Input
+            type="email"
             placeholder="Enter phone or email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="input"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
 
-          <div className="input-wrapper">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="password-input input"
-            />
-            <span
-              className="material-symbols-outlined toggle-icon"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "visibility_off" : "visibility"}
-            </span>
-          </div>
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            toggleable={true}
+          />
+
+          {/* Error Message */}
+          {error && <p className="error-message">{error}</p>}
 
           {/* Button */}
-          <button className="btn" onClick={validateLogin} disabled={loading}>
-            {loading ? (
-              <span className="loader"></span> // spinner inside button
-            ) : (
-              "Continue"
-            )}
-          </button>
-          {/* Error */}
-          {error && <p className="error">{error}</p>}
+          <Button
+            type="button"
+            onClick={validateLogin}
+            disabled={loading}
+            loading={loading}
+            fullWidth
+            size="lg"
+          >
+            Continue
+          </Button>
 
           {/* Footer */}
+          <p className="footer-text">
+            By continuing, you agree to our{" "}
+            <span style={{ color: "#3b82f6" }}>Terms & Privacy Policy</span>
+          </p>
         </div>
       </div>
-      <p className="footer-text">
-        By continuing, you agree to our <span style={{ color: "#3b82f6" }}>Terms &{" "}
-       Privacy Policy</span>
-      </p>
     </div>
   );
 }

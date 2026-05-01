@@ -1,24 +1,15 @@
-import "../css/card-style.css";
-function InstituteCard(props) {
+import Card from "../common-components/Card";
+
+function InstituteCard({ instLogo, name }) {
   return (
-    <>
-    {/* UI for Institute Card */}
-      <div className="card-container">
-        <div className="card-left">
-          <img src={props.instLogo} alt="" />
-
-          <div className="card-info">
-            <h3>{props.name}</h3>
-            <p>Mumbai, Maharashtra</p> 
-          </div>
-        </div>
-
-        <div className="card-right">
-          <span className="badge">School</span>
-          <div className="arrow-btn">›</div>
-        </div>
-      </div>
-    </>
+    <Card
+      image={instLogo}
+      title={name}
+      subtitle="Mumbai, Maharashtra"
+      badge="School"
+      rightContent={<div className="arrow-btn">›</div>}
+    />
   );
 }
+
 export default InstituteCard;
